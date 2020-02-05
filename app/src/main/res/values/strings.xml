@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Recipes</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="dialog_error_message">Smth went wrong, please try again, %1$s</string>
+    <string name="dialog_error_button">Retry</string>
+
+    <string name="chef">Chef: %1$s</string>
+    <string name="tags">Tags: %1$s</string>
+    <string name="description">Description: %1$s</string>
+
+</resources>

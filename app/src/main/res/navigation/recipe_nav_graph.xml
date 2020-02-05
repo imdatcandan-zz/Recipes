@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/repoGraph"
+    app:startDestination="@id/recipeListFragment">
+
+    <fragment
+        android:id="@+id/recipeListFragment"
+        android:name="com.marleyspoon.recipes.view.RecipeListFragment"
+        tools:layout="@layout/fragment_recipe_list">
+
+        <action
+            android:id="@+id/action_recipeListFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.marleyspoon.recipes.view.RecipeDetailFragment"
+        tools:layout="@layout/fragment_recipe_detail">
+
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_recipeListFragment"
+            app:destination="@id/recipeListFragment" />
+    </fragment>
+</navigation>
