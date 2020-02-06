@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.marleyspoon.recipes.R
 import com.marleyspoon.recipes.model.Recipe
-import kotlinx.android.synthetic.main.adapter_rate_list.view.*
+import kotlinx.android.synthetic.main.adapter_recipe_list.view.*
 
 class RateListAdapter(
     private val recipeList: MutableList<Recipe>,
@@ -27,7 +27,7 @@ class RateListAdapter(
         viewType: Int
     ): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.adapter_rate_list, parent, false)
+            .inflate(R.layout.adapter_recipe_list, parent, false)
         return ViewHolder(view)
     }
 

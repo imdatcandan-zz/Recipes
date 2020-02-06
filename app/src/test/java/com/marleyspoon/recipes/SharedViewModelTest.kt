@@ -2,7 +2,7 @@ package com.marleyspoon.recipes
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.contentful.java.cda.CDAEntry
+import com.contentful.java.cda.CDAResource
 import com.marleyspoon.recipes.data.DataRepository
 import com.marleyspoon.recipes.model.Recipe
 import com.marleyspoon.recipes.viewmodel.SharedViewModel
@@ -27,10 +27,9 @@ class SharedViewModelTest {
     @RelaxedMockK
     private lateinit var dataRepository: DataRepository
 
-    companion object {
-        val ERROR = Exception("dummy error")
-        val recipeList: MutableList<Recipe> = mutableListOf()
-    }
+    private val ERROR = Exception("dummy error")
+    private val recipeListResource: MutableList<CDAResource> = mutableListOf()
+    private val recipeList: MutableList<Recipe> = mutableListOf()
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -51,14 +50,12 @@ class SharedViewModelTest {
     fun testSuccessViewState() {
         runBlockingTest {
             coEvery {
-                dataRepository.cdaClient.fetch(CDAEntry::class.java)
-            } returns recipeList
+                dataRepository.fetchRecipeList()
+            } returns recipeListResource
         }
         viewModel.fetchRecipeList()
-        verifyOrder {
-            mockedObserver.onChanged(ViewState.Loading(true))
+        verify {
             mockedObserver.onChanged(ViewState.Success(recipeList))
-            mockedObserver.onChanged(ViewState.Loading(false))
         }
     }
 
@@ -66,14 +63,12 @@ class SharedViewModelTest {
     fun testErrorViewState() {
         runBlockingTest {
             coEvery {
-                dataRepository.cdaClient.fetch(CDAEntry::class.java)
+                dataRepository.fetchRecipeList()
             } throws ERROR
         }
         viewModel.fetchRecipeList()
-        verifyOrder {
-            mockedObserver.onChanged(ViewState.Loading(true))
+        verify {
             mockedObserver.onChanged(ViewState.Error(ERROR))
-            mockedObserver.onChanged(ViewState.Loading(false))
         }
     }
 

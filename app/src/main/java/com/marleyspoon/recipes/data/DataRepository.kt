@@ -1,7 +1,9 @@
 package com.marleyspoon.recipes.data
 
 import com.contentful.java.cda.CDAClient
-
+import com.contentful.java.cda.CDAEntry
+import com.contentful.java.cda.CDAResource
+import com.marleyspoon.recipes.model.Recipe
 
 class DataRepository {
 
@@ -12,6 +14,13 @@ class DataRepository {
             .setSpace(SPACE_ID)
             .setToken(ACCESS_TOKEN)
             .build()
+    }
+
+    fun fetchRecipeList(): MutableList<CDAResource> {
+        return cdaClient.fetch(CDAEntry::class.java)
+            .withContentType(Recipe.CONTENT_TYPE)
+            .all()
+            .items()
     }
 
     companion object {

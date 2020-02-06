@@ -1,7 +1,7 @@
 package com.marleyspoon.recipes.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.marleyspoon.recipes.R
 
 class MainActivity : AppCompatActivity() {

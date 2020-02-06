@@ -23,8 +23,8 @@ class RecipeListFragment : Fragment(R.layout.fragment_recipe_list), OnItemClickL
             when (it) {
                 is ViewState.Success -> recyclerView.adapter = RateListAdapter(it.recipeList, this)
                 is ViewState.Error -> showErrorDialog(it.exception)
-                is ViewState.Loading -> progressBar.showLoading(it.showLoading)
             }
+            progressBar.showLoading(false)
         })
     }
 
